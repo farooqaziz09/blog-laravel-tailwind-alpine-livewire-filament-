@@ -8,8 +8,7 @@
   <div class="mt-3">
     <div class="flex items-center mb-2">
       @if ($category = $post->categories()->first())
-        <x-badge wire:navigate href="{{ route('post.index', ['category' => $category->slug]) }}" :bgColor="$category->bg_color"
-          :textColor="$category->text_color">{{ $category->title }}</x-badge>
+        <x-posts.category-badge :category="$category" />
       @endif
       <p class="text-gray-500 text-sm">{{ $post->published_at }}</p>
     </div>

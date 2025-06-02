@@ -64,10 +64,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function likes(){
+    public function likes()
+    {
         return $this->belongsToMany(Post::class, 'post_like')->withTimestamps();
     }
-    public function hasLiked($post){
+    public function hasLiked($post)
+    {
         return $this->likes()->where('post_id', $post->id)->exists();
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
