@@ -19,10 +19,24 @@ class LikeButton extends Component
         $hasLiked = $user->hasLiked($this->post);
         if ($hasLiked) {
             $user->likes()->detach($this->post);
+            $this->dispatch(
+                'alert',
+                type: 'error',
+                title: 'Post unliked',
+                position: 'center',
+                timer: 1500
+            );
             return;
         }
         $user->likes()->attach($this->post);
+        $this->dispatch(
+            'alert',
+            type: 'success',
+            title: 'Post Liked',
+            position: 'center',
+            timer: 1500
 
+        );
     }
     public function render()
     {

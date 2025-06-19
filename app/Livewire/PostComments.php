@@ -21,8 +21,8 @@ class PostComments extends Component
         if (auth()->guest()) {
             return;
         }
-        $this->validateOnly('comment');
-        $this->post->comments()->create([
+        // $this->validateOnly('comment');
+        $comment = $this->post->comments()->create([
             'comment' => $this->comment,
             'user_id' => auth()->id(),
             'post_id' => $this->post->id,
@@ -33,7 +33,7 @@ class PostComments extends Component
     #[Computed()]
     public function comments()
     {
-        return $this->post?->comments()->latest()->paginate(5);
+        return $this->post?->comments()->with('users')->latest()->paginate(5);
     }
     // livwire autoload post-comment view so we can comment this
     // public function render()
