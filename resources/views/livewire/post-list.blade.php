@@ -1,4 +1,4 @@
-<div class=" px-3 lg:px-7 py-6">
+<div id="posts" class=" px-3 lg:px-7 py-6">
   <div class="flex justify-between items-center border-b border-gray-100">
     <div class="flex justify-between items-center border-b border-gray-100">
       <div class="text-gray-600">
@@ -29,8 +29,12 @@
       <x-posts.post-item :key="$post->id" :post="$post" />
     @endforeach
   </div>
-
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
   <div class="my-3">
-    {{ $this->posts->links() }}
+    {{ $this->posts->links(data: ['scrollTo'=> '#posts']) }}
   </div>
 </div>
